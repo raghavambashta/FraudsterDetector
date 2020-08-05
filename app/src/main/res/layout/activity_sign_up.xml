@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".SignUp">
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="170dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="110dp"
+        android:background="@drawable/capsule_edit_text"
+        android:digits="0123456789"
+        android:drawableLeft="@drawable/phone_number"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        android:maxLength="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dob" />
+
+    <Button
+        android:id="@+id/getOtp"
+        android:layout_width="97dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="96dp"
+        android:background="@drawable/capsule_bg"
+        android:onClick="generateOtp"
+        android:text="OTP"
+        android:textColor="#C6AD0A"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+
+    <Button
+        android:id="@+id/reset"
+        android:layout_width="97dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/capsule_bg"
+        android:onClick="resetItems"
+        android:text="Reset"
+        android:textColor="#C6AD0A"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+
+    <EditText
+        android:id="@+id/firstName"
+        android:layout_width="153dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/capsule_edit_text"
+        android:drawableStart="@drawable/name"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="First name"
+        android:inputType="textCapSentences"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/lastName"
+        android:layout_width="153dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/capsule_edit_text"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Last name"
+        android:inputType="textCapSentences"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/dob"
+        android:layout_width="130dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="136dp"
+        android:background="@drawable/capsule_edit_text"
+        android:clickable="true"
+        android:digits=""
+        android:drawableStart="@drawable/dob"
+        android:ems="10"
+        android:hint="      DOB"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstName" />
+
+    <ImageView
+        android:id="@+id/loginIcon"
+        android:layout_width="81dp"
+        android:layout_height="98dp"
+        android:layout_marginStart="165dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="165dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/login_icn" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
