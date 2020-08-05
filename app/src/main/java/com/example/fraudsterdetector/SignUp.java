@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,10 +23,11 @@ import java.util.Locale;
 public class SignUp extends AppCompatActivity {
     EditText editTextPhone;
     Button getOtp;
-    EditText firstName;
-    EditText lastName;
     EditText dob;
     Calendar myCalendar;
+    ImageView loginIcon;
+    EditText name;
+    EditText emailId;
 
     private void updateLabel() {
         String myFormat = "dd/MM/yy";
@@ -35,24 +37,23 @@ public class SignUp extends AppCompatActivity {
     }
 
     public void resetItems(View view) {
-        firstName.setText(null);
-        lastName.setText(null);
         dob.setText(null);
         editTextPhone.setText(null);
+        name.setText(null);
     }
 
     public void generateOtp(View view) {
         if (editTextPhone.getText().toString().length() < 10) {
             editTextPhone.setError("Phone number is Invalid");
         }
-        if (firstName.getText().toString().length() == 0) {
-            firstName.setError("Please enter your first name");
-        }
-        if (lastName.getText().toString().length() == 0) {
-            lastName.setError("Please enter your last name");
-        }
         if (dob.getText().toString().length() == 0) {
             dob.setError("Select your date of birth");
+        }
+        if (name.getText().toString().length() == 0) {
+            name.setError("Enter your Name");
+        }
+        if (emailId.getText().toString().length() == 0) {
+            emailId.setError("Enter your Email Id");
         }
         InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -63,9 +64,13 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         getOtp = (Button) findViewById(R.id.getOtp);
         editTextPhone = (EditText) findViewById(R.id.editTextPhone);
-        firstName = (EditText) findViewById(R.id.firstName);
-        lastName = (EditText) findViewById(R.id.lastName);
         dob = (EditText) findViewById(R.id.dob);
+        loginIcon = (ImageView) findViewById(R.id.loginIcon);
+        name = (EditText) findViewById(R.id.nameEditText);
+        emailId = (EditText) findViewById(R.id.emailEditText);
+
+        loginIcon.setY(-350);
+        loginIcon.animate().translationYBy(320).setDuration(2000);//animating login icon
 
         dob.setInputType(InputType.TYPE_NULL);//disabling keyboard popup for dob EditText
         dob.setTextIsSelectable(true);
