@@ -70,31 +70,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <EditText
-        android:id="@+id/editTextPhone"
-        android:layout_width="179dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="110dp"
-        android:background="@drawable/capsule_edit_text"
-        android:digits="0123456789"
-        android:drawableLeft="@drawable/phone_number"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Phone Number"
-        android:inputType="phone"
-        android:maxLength="10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dob" />
-
     <Button
         android:id="@+id/getOtp"
         android:layout_width="134dp"
         android:layout_height="53dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="64dp"
         android:background="@drawable/capsule_bg"
         android:onClick="generateOtp"
         android:text="signup"
@@ -102,14 +83,14 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/phone" />
 
     <Button
         android:id="@+id/reset"
         android:layout_width="134dp"
         android:layout_height="53dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/capsule_bg"
         android:onClick="resetItems"
         android:text="Reset"
@@ -117,15 +98,14 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
-
+        app:layout_constraintTop_toBottomOf="@+id/phone" />
 
     <EditText
         android:id="@+id/dob"
         android:layout_width="130dp"
         android:layout_height="33dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="208dp"
         android:background="@drawable/capsule_edit_text"
         android:clickable="true"
         android:digits=""
@@ -134,29 +114,59 @@
         android:hint="      DOB"
         android:inputType="textPersonName"
         android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <AutoCompleteTextView
+        android:id="@+id/acT1"
+        android:layout_width="130dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="70dp"
+        android:background="@drawable/capsule_edit_text"
+        android:clickable="true"
+        android:cursorVisible="false"
+        android:dropDownHeight="155dp"
+        android:focusable="false"
+        android:hint="Gender"
+        android:inputType="none"
+        android:maxLines="1"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <ImageView
+        android:src="@drawable/del"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        app:layout_constraintRight_toRightOf="@+id/acT1"
+        app:layout_constraintBottom_toBottomOf="@+id/acT1"
+        app:layout_constraintTop_toTopOf="@+id/acT1"
+        android:alpha="1"
+        android:id="@+id/delButton"
+        android:contentDescription="Delete Button" />
+
+    <ImageView
         android:id="@+id/loginIcon"
-        android:layout_width="81dp"
-        android:layout_height="98dp"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="134dp"
+        android:layout_height="124dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/login_icn" />
+        app:srcCompat="@drawable/appicon" />
 
     <ImageView
         android:id="@+id/name"
         android:layout_width="368dp"
         android:layout_height="128dp"
         android:layout_marginStart="21dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="22dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/getOtp"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/applogo" />
 
     <TextView
@@ -184,6 +194,51 @@
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/getOtp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phone"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="200dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="100dp"
+        android:textColorHint="#673AB7"
+        app:boxStrokeColor="#6931CD"
+        app:helperTextTextColor="#673AB7"
+        app:hintTextColor="#6322D6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dob"
+        app:placeholderTextColor="#673AB7"
+        app:prefixTextColor="#673AB7"
+        app:suffixTextColor="#673AB7">
+
+        <com.google.android.material.textfield.TextInputEditText
+
+            android:id="@+id/editTextPhone"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+
+            android:digits="0987654321"
+
+            android:drawableLeft="@drawable/phone_number"
+
+            android:hint=" Phone Number"
+
+            android:inputType="number"
+
+            android:maxLength="10"
+
+            android:textColor="#5A1DC6"
+
+            android:textSize="20sp"
+
+            tools:layout_editor_absoluteX="-149dp"
+        tools:layout_editor_absoluteY="310dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
