@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:hint=" Name"
             android:drawableLeft="@drawable/name"
+            android:textColor="#5A1DC6"
             android:inputType="textCapSentences"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -63,7 +64,8 @@
             android:layout_height="wrap_content"
             android:hint=" Email Id"
             android:drawableLeft="@drawable/mail"
-            android:inputType="textCapSentences"/>
+            android:inputType="textCapSentences"
+            android:textColor="#5A1DC6"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -170,7 +172,7 @@
         app:layout_constraintTop_toBottomOf="@+id/getOtp" />
 
     <TextView
-        android:id="@+id/signinTextView"
+        android:id="@+id/signInTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
