@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MotionEvent;
@@ -28,6 +29,13 @@ public class SignUp extends AppCompatActivity {
     ImageView loginIcon;
     EditText name;
     EditText emailId;
+
+    public void signIn(View view)
+    {
+        Intent intent = new Intent(SignUp.this, SignIn.class);
+        startActivity(intent);
+        finish();
+    }
 
     private void updateLabel() {
         String myFormat = "dd/MM/yy";
