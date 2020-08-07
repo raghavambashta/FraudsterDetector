@@ -4,8 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".SignUp">
+
+    <ImageView
+        android:id="@+id/headImageView"
+        android:layout_width="0dp"
+        android:layout_height="117dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/head_background" />
+
+    <ImageView
+        android:id="@+id/textureImageView"
+        android:layout_width="0dp"
+        android:layout_height="320dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="97dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/capsule_edit_text"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/headImageView"
+        app:srcCompat="@drawable/texture" />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fullName"
@@ -13,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="135dp"
+        android:layout_marginTop="38dp"
         android:layout_marginEnd="70dp"
         android:layout_marginBottom="6dp"
         android:textColorHint="#673AB7"
@@ -21,9 +45,10 @@
         app:helperTextTextColor="#673AB7"
         app:hintTextColor="#6322D6"
         app:layout_constraintBottom_toTopOf="@+id/email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textureImageView"
+        app:layout_constraintStart_toEndOf="@+id/textureImageView"
+        app:layout_constraintStart_toStartOf="@+id/textureImageView"
+        app:layout_constraintTop_toTopOf="@+id/textureImageView"
         app:placeholderTextColor="#673AB7"
         app:prefixTextColor="#673AB7"
         app:suffixTextColor="#673AB7">
@@ -32,10 +57,10 @@
             android:id="@+id/nameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" Name"
             android:drawableLeft="@drawable/name"
-            android:textColor="#5A1DC6"
-            android:inputType="textCapSentences"/>
+            android:hint=" Name"
+            android:inputType="textCapSentences"
+            android:textColor="#5A1DC6" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,15 +70,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="110dp"
         android:layout_marginEnd="70dp"
         android:textColorHint="#673AB7"
         app:boxStrokeColor="#6931CD"
         app:helperTextTextColor="#673AB7"
         app:hintTextColor="#6322D6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textureImageView"
+        app:layout_constraintStart_toStartOf="@+id/textureImageView"
+        app:layout_constraintTop_toTopOf="@+id/textureImageView"
         app:placeholderTextColor="#673AB7"
         app:prefixTextColor="#673AB7"
         app:suffixTextColor="#673AB7">
@@ -62,10 +87,10 @@
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" Email Id"
             android:drawableLeft="@drawable/mail"
-            android:inputType="textCapSentences"
-            android:textColor="#5A1DC6"/>
+            android:hint=" Email Id"
+            android:inputType="textEmailAddress"
+            android:textColor="#5A1DC6" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,36 +100,38 @@
         android:layout_width="134dp"
         android:layout_height="53dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/capsule_bg"
         android:onClick="generateOtp"
         android:text="signup"
         android:textColor="#C6AD0A"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textureImageView"
         app:layout_constraintTop_toBottomOf="@+id/phone" />
 
     <Button
         android:id="@+id/reset"
         android:layout_width="134dp"
         android:layout_height="53dp"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
         android:background="@drawable/capsule_bg"
         android:onClick="resetItems"
         android:text="Reset"
         android:textColor="#C6AD0A"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/getOtp"
+        app:layout_constraintStart_toStartOf="@+id/textureImageView"
         app:layout_constraintTop_toBottomOf="@+id/phone" />
 
     <EditText
         android:id="@+id/dob"
         android:layout_width="130dp"
         android:layout_height="33dp"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/capsule_edit_text"
         android:clickable="true"
@@ -112,9 +139,9 @@
         android:drawableStart="@drawable/dob"
         android:ems="10"
         android:hint="      DOB"
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textureImageView"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <AutoCompleteTextView
@@ -122,7 +149,7 @@
         android:layout_width="130dp"
         android:layout_height="33dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="70dp"
+        android:layout_marginEnd="30dp"
         android:background="@drawable/capsule_edit_text"
         android:clickable="true"
         android:cursorVisible="false"
@@ -132,7 +159,7 @@
         android:inputType="none"
         android:maxLines="1"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textureImageView"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <ImageView
@@ -153,7 +180,7 @@
         android:layout_marginStart="148dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/headImageView"
         app:srcCompat="@drawable/appicon" />
 
     <ImageView
@@ -200,44 +227,35 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="200dp"
         android:layout_height="58dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginEnd="70dp"
         android:textColorHint="#673AB7"
         app:boxStrokeColor="#6931CD"
         app:helperTextTextColor="#673AB7"
         app:hintTextColor="#6322D6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textureImageView"
+        app:layout_constraintStart_toStartOf="@+id/textureImageView"
         app:layout_constraintTop_toBottomOf="@+id/dob"
         app:placeholderTextColor="#673AB7"
         app:prefixTextColor="#673AB7"
         app:suffixTextColor="#673AB7">
 
         <com.google.android.material.textfield.TextInputEditText
-
             android:id="@+id/editTextPhone"
-
             android:layout_width="match_parent"
-
             android:layout_height="match_parent"
-
             android:digits="0987654321"
-
             android:drawableLeft="@drawable/phone_number"
-
             android:hint=" Phone Number"
-
             android:inputType="number"
-
             android:maxLength="10"
-
+            android:textAlignment="center"
             android:textColor="#5A1DC6"
-
             android:textSize="20sp"
-
             tools:layout_editor_absoluteX="-149dp"
-        tools:layout_editor_absoluteY="310dp" />
+            tools:layout_editor_absoluteY="310dp" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
 

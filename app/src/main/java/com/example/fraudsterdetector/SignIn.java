@@ -2,14 +2,26 @@ package com.example.fraudsterdetector;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class SignIn extends AppCompatActivity {
 
     EditText signInPhoneEditText;
+
+    //to go back to signUp page
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(SignIn.this, SignUp.class);
+        startActivity(intent);
+        finish();
+        return;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,5 +34,6 @@ public class SignIn extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
 
         signInPhoneEditText = (EditText) findViewById(R.id.signInPhoneEditText);
+
     }
 }

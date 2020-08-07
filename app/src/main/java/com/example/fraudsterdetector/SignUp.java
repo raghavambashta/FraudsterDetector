@@ -2,13 +2,12 @@ package com.example.fraudsterdetector;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.InputType;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -35,6 +33,29 @@ public class SignUp extends AppCompatActivity {
     ImageView loginIcon;
     EditText name;
     EditText emailId;
+    AutoCompleteTextView acTV1; //drop down list for gender
+    InputMethodManager inputManager;
+
+    boolean doubleBackToExitPressedOnce = false;
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please press back again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+    }
 
     public void signIn(View view)
     {
@@ -51,9 +72,23 @@ public class SignUp extends AppCompatActivity {
     }
 
     public void resetItems(View view) {
+        //hiding keyboard
+        inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+        //reset all inputs
         dob.setText(null);
         editTextPhone.setText(null);
         name.setText(null);
+        emailId.setText(null);
+        acTV1.setText(null);
+
+        //setting all the errors (if any) to null
+        name.setError(null);
+        emailId.setError(null);
+        dob.setError(null);
+        acTV1.setError(null);
+        editTextPhone.setError(null);
     }
 
     public void generateOtp(View view) {
@@ -69,12 +104,13 @@ public class SignUp extends AppCompatActivity {
         if (emailId.getText().toString().length() == 0) {
             emailId.setError("Enter your Email Id");
         }
-        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //hiding notification bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -112,19 +148,15 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(hasFocus) {
-                    new DatePickerDialog(SignUp.this, date, myCalendar
-                            .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                            myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                    new DatePickerDialog(SignUp.this, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
                 }
             }
         });
 
-        //Gender EditText
-        final AutoCompleteTextView acTV1 = findViewById(R.id.acT1);
+        //Implementation Gender drop down list EditText
+        acTV1 = findViewById(R.id.acT1);
         final ImageView delButton = findViewById(R.id.delButton);
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_list_item_1, getResources()
-                .getStringArray(R.array.Gender_Names));
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Gender_Names));
         final String[] selection = new String[1];
         acTV1.setAdapter(arrayAdapter);
         acTV1.setCursorVisible(false);
@@ -151,9 +183,10 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 acTV1.setText(null);
-                delButton.setAlpha(.2f);
                 selection[0] = null;
             }
         });
+
+        dob.setKeyListener(null);
     }
 }

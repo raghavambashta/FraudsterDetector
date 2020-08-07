@@ -4,8 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".SignIn">
+
+    <ImageView
+        android:id="@+id/headImageView"
+        android:layout_width="match_parent"
+        android:layout_height="113dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/head_background" />
+
+    <ImageView
+        android:id="@+id/textureImageView"
+        android:layout_width="341dp"
+        android:layout_height="341dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="97dp"
+        android:background="@drawable/capsule_edit_text"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/headImageView"
+        app:srcCompat="@drawable/texture" />
 
     <Button
         android:id="@+id/button"
@@ -15,6 +37,7 @@
         android:layout_marginTop="225dp"
         android:fontFamily="sans-serif-medium"
         android:text="Sign in"
+        android:textColor="#C6AD0A"
         android:textSize="20sp"
         android:textStyle="bold"
         app:iconPadding="8dp"
@@ -50,7 +73,8 @@
             android:inputType="number"
             android:maxLength="10"
             android:textColor="#5A1DC6"
-            android:textSize="26sp" />
+            android:textSize="26sp"
+            android:textAlignment="center"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
