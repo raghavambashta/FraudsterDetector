@@ -36,6 +36,7 @@
         android:layout_marginStart="146dp"
         android:layout_marginTop="225dp"
         android:fontFamily="sans-serif-medium"
+        android:onClick="signIn"
         android:text="Sign in"
         android:textColor="#C6AD0A"
         android:textSize="20sp"

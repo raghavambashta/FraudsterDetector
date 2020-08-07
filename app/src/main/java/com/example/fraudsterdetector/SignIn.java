@@ -2,17 +2,23 @@ package com.example.fraudsterdetector;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.hardware.input.InputManager;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethod;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class SignIn extends AppCompatActivity {
 
     EditText signInPhoneEditText;
+    private boolean noError = true;
 
     //to go back to signUp page
     @Override
@@ -21,6 +27,20 @@ public class SignIn extends AppCompatActivity {
         startActivity(intent);
         finish();
         return;
+    }
+
+    public void signIn(View view)
+    {
+        if (signInPhoneEditText.getText().toString().length() == 0) {
+            signInPhoneEditText.setError("Enter your phone number");
+            noError = false;
+        }
+        if (noError) {
+            Intent intent = new Intent(SignIn.this, OtpPage.class);
+            startActivity(intent);
+            finish();
+        }
+        noError = true;
     }
 
     @Override

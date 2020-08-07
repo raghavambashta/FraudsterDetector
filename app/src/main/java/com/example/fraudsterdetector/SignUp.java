@@ -35,9 +35,11 @@ public class SignUp extends AppCompatActivity {
     EditText emailId;
     AutoCompleteTextView acTV1; //drop down list for gender
     InputMethodManager inputManager;
+    private boolean noError = true;
 
     boolean doubleBackToExitPressedOnce = false;
 
+    //pressing back twice to exit app
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -94,19 +96,37 @@ public class SignUp extends AppCompatActivity {
     public void generateOtp(View view) {
         if (editTextPhone.getText().toString().length() < 10) {
             editTextPhone.setError("Phone number is Invalid");
+            noError = false;
         }
         if (dob.getText().toString().length() == 0) {
             dob.setError("Select your date of birth");
+            noError = false;
         }
         if (name.getText().toString().length() == 0) {
             name.setError("Enter your Name");
+            noError = false;
         }
         if (emailId.getText().toString().length() == 0) {
             emailId.setError("Enter your Email Id");
+            noError = false;
         }
+        if (acTV1.getText().toString().length() == 0) {
+            acTV1.setError("Select Gender");
+            noError = false;
+        }
+        if (noError) {
+            Intent intent = new Intent(SignUp.this, OtpPage.class);
+            startActivity(intent);
+            finish();
+            dob.setError(null);
+            acTV1.setError(null);
+        }
+        noError = true;
+
         inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
