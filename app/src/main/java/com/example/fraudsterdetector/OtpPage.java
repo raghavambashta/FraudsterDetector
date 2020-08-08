@@ -90,7 +90,7 @@ public class OtpPage extends AppCompatActivity {
                 validateButton.setEnabled(false);
             }
         }else{
-            Toast.makeText(OtpPage.this, "Please enter OTP", Toast.LENGTH_SHORT).show();
+            Toast.makeText(OtpPage.this, "Please enter the OTP", Toast.LENGTH_SHORT).show();
         }
     }
 
