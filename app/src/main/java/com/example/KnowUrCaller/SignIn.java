@@ -1,19 +1,13 @@
-package com.example.fraudsterdetector;
+package com.example.KnowUrCaller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.hardware.input.InputManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethod;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class SignIn extends AppCompatActivity {
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fraudster Detector</string>
+    <string name="app_name">KnowUrCaller</string>
 
     <string-array name="Gender_Names">
         <item>Male</item>
