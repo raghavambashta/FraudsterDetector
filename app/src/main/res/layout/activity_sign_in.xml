@@ -20,7 +20,7 @@
         android:id="@+id/textureImageView"
         android:layout_width="341dp"
         android:layout_height="341dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="37dp"
         android:layout_marginTop="97dp"
         android:background="@drawable/capsule_edit_text"
         android:scaleType="fitXY"
@@ -30,7 +30,7 @@
         app:srcCompat="@drawable/texture" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/signInButton"
         android:layout_width="121dp"
         android:layout_height="55dp"
         android:layout_marginStart="146dp"
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/phone"
+        android:id="@+id/signInPhone"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
