@@ -1,5 +1,6 @@
 package com.example.KnowUrCaller;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -18,170 +19,32 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskExecutors;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
+
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class OtpPage extends AppCompatActivity {
 
-    EditText edOtp1;
-    EditText edOtp2;
-    EditText edOtp3;
-    EditText edOtp4;
-    TextView textView;
-    private String otpEntered = "";
-    Button validateButton;
-    Button tryAgainButton;
+    //These are the objects needed
+    //It is the verification id that will be sent to the user
+    private String mVerificationId;
 
-    public void resend (View view)
-    {
-        randomNumberGenerator();
-        tryAgainButton.setVisibility(View.GONE );
-        tryAgainButton.setEnabled(false);
-        validateButton.setVisibility(View.VISIBLE);
-        validateButton.setEnabled(true);
-    }
+    //The edittext to input the code
+    private EditText editTextCode;
 
-    public void tryAgain(View view)
-    {
-        tryAgainButton.setVisibility(View.GONE);
-        tryAgainButton.setEnabled(false);
-        validateButton.setVisibility(View.VISIBLE);
-        validateButton.setEnabled(true);
-        edOtp1.setText(null);
-        edOtp2.setText(null);
-        edOtp3.setText(null);
-        edOtp4.setText(null);
-    }
+    //firebase auth object
+    private FirebaseAuth mAuth;
 
-    public void validate(View view)
-    {
-        Boolean noError = true;
-        if (edOtp1.getText().toString().equals(null)){
-            noError = false;
-        }
-        else if (edOtp2.getText().toString().equals(null)){
-            noError = false;
-        }
-        else if (edOtp3.getText().toString().equals(null)){
-            noError = false;
-        }
-        else if (edOtp4.getText().toString().equals(null)){
-            noError = false;
-        }
-        if (noError){
-            randomNumberString = "";
-            otpEntered = edOtp1.getText().toString() + edOtp2.getText().toString() + edOtp3.getText().toString() + edOtp4.getText().toString();
-
-            //checking if the entered otp is correct
-            if (otpEntered.equals(Integer.toString(myOTP))){
-                Toast.makeText(OtpPage.this, "Validation successful", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(OtpPage.this, "Validation failed", Toast.LENGTH_SHORT).show();
-                tryAgainButton.setVisibility(View.VISIBLE);
-                tryAgainButton.setEnabled(true);
-                validateButton.setVisibility(View.GONE);
-                validateButton.setEnabled(false);
-            }
-        }else{
-            Toast.makeText(OtpPage.this, "Please enter OTP", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    //generating 4 digit random number for OTP
-    String randomNumberString = "";
-    int otpGenerated;
-    int a, b, c, d;
-    int myOTP;
-
-    public void randomNumberGenerator() {
-        Random random = new Random();
-        a = random.nextInt(9)+1;
-        b = random.nextInt(9);
-        c = random.nextInt(9);
-        d = random.nextInt(9);
-
-        randomNumberString = Integer.toString(a) + Integer.toString(b) + Integer.toString(c) + Integer.toString(d);
-        otpGenerated = Integer.parseInt(randomNumberString);
-
-        //storing the otp
-        SharedPreferences sharedPreferences = getSharedPreferences("OTP", Activity.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("OTP generated", otpGenerated);
-        editor.commit();
-
-        myOTP = sharedPreferences.getInt("OTP generated", -1);
-
-        Log.i("my OTP : ", Integer.toString(myOTP));
-    }
-
-    //OTP text watcher
-    public class GenericTextWatcher implements TextWatcher {
-        private View view;
-
-        private GenericTextWatcher(View view) {
-            this.view = view;
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-            // TODO Auto-generated method stub
-            String text = editable.toString();
-            switch (view.getId()) {
-                case R.id.edOtp1:
-                    if (text.length() == 1)
-                        edOtp2.requestFocus();
-                    break;
-                case R.id.edOtp2:
-                    if (text.length() == 1)
-                        edOtp3.requestFocus();
-                    else if (text.length() == 0)
-                        edOtp1.requestFocus();
-                    break;
-                case R.id.edOtp3:
-                    if (text.length() == 1)
-                        edOtp4.requestFocus();
-                    else if (text.length() == 0)
-                        edOtp2.requestFocus();
-                    break;
-                case R.id.edOtp4:
-                    if (text.length() == 0)
-                        edOtp3.requestFocus();
-                    break;
-            }
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-            // TODO Auto-generated method stub
-        }
-
-        @Override
-        public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-            // TODO Auto-generated method stub
-        }
-    }
-
-    //to go back to signUp page
-    private boolean doubleBackToGoBack = false;
-    @Override
-    public void onBackPressed() {
-        if (doubleBackToGoBack) {
-            Intent intent = new Intent(OtpPage.this, SignUp.class);
-            startActivity(intent);
-            finish();
-            return;
-        }
-
-        this.doubleBackToGoBack = true;
-        Toast.makeText(this, "Press back again", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToGoBack = false;
-            }
-        }, 2000);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,25 +56,124 @@ public class OtpPage extends AppCompatActivity {
 
         setContentView(R.layout.activity_otp_page);
 
-        edOtp1 = (EditText)findViewById(R.id.edOtp1);
-        edOtp2 = (EditText)findViewById(R.id.edOtp2);
-        edOtp3 = (EditText)findViewById(R.id.edOtp3);
-        edOtp4 = (EditText)findViewById(R.id.edOtp4);
+        //code starts here
+        //initializing objects
+        mAuth = FirebaseAuth.getInstance();
+        editTextCode = findViewById(R.id.editTextCode);
 
-        edOtp1.addTextChangedListener(new GenericTextWatcher(edOtp1));
-        edOtp2.addTextChangedListener(new GenericTextWatcher(edOtp2));
-        edOtp3.addTextChangedListener(new GenericTextWatcher(edOtp3));
-        edOtp4.addTextChangedListener(new GenericTextWatcher(edOtp4));
 
-        textView = (TextView) findViewById(R.id.textView);
-        //animating "Enter OTP" TextView
-        textView.setY(-350);
-        textView.animate().translationYBy(320).setDuration(1000);
+        //getting mobile number from the previous activity
+        //and sending the verification code to the number
+        Intent intent = getIntent();
+        String mobile = intent.getStringExtra("Phone Number");
+        sendVerificationCode(mobile);
 
-        //generating otp
-        randomNumberGenerator();
 
-        validateButton = (Button) findViewById(R.id.validateButton);
-        tryAgainButton = (Button) findViewById(R.id.tryAgainButton);
+        //if the automatic sms detection did not work, user can also enter the code manually
+        //so adding a click listener to the button
+        findViewById(R.id.buttonSignIn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String code = editTextCode.getText().toString().trim();
+                if (code.isEmpty() || code.length() < 6) {
+                    editTextCode.setError("Enter valid code");
+                    editTextCode.requestFocus();
+                    return;
+                }
+
+                //verifying the code entered manually
+                verifyVerificationCode(code);
+            }
+        });
     }
+
+    //the method is sending verification code
+    //the country id is concatenated
+    //you can take the country id as user input as well
+    private void sendVerificationCode(String mobile) {
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                mobile,
+                60,
+                TimeUnit.SECONDS,
+                TaskExecutors.MAIN_THREAD,
+                mCallbacks);
+    }
+
+
+
+    //the callback to detect the verification status
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        @Override
+        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+
+            //Getting the code sent by SMS
+            String code = phoneAuthCredential.getSmsCode();
+
+            //sometime the code is not detected automatically
+            //in this case the code will be null
+            //so user has to manually enter the code
+            if (code != null) {
+                editTextCode.setText(code);
+                //verifying the code
+                verifyVerificationCode(code);
+            }
+        }
+
+        @Override
+        public void onVerificationFailed(FirebaseException e) {
+            Toast.makeText(OtpPage.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+            super.onCodeSent(s, forceResendingToken);
+
+            //storing the verification id that is sent to the user
+            mVerificationId = s;
+        }
+    };
+
+
+    private void verifyVerificationCode(String code) {
+        //creating the credential
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
+
+        //signing the user
+        signInWithPhoneAuthCredential(credential);
+    }
+
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(OtpPage.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            //verification successful we will start the profile activity
+                            Intent intent = new Intent(OtpPage.this, profile.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+
+                        } else {
+
+                            //verification unsuccessful.. display an error message
+
+                            String message = "Something is wrong, we will fix it soon...";
+
+                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                message = "Invalid code entered...";
+                            }
+
+                            Snackbar snackbar = Snackbar.make(findViewById(R.id.parent), message, Snackbar.LENGTH_LONG);
+                            snackbar.setAction("Dismiss", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                }
+                            });
+                            snackbar.show();
+                        }
+                    }
+                });
+    }
+
 }

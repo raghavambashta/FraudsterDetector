@@ -27,10 +27,13 @@ public class SignIn extends AppCompatActivity {
     {
         if (signInPhoneEditText.getText().toString().length() == 0) {
             signInPhoneEditText.setError("Enter your phone number");
+            signInPhoneEditText.requestFocus();
             noError = false;
         }
         if (noError) {
+            String phoneNumber = "+91" + signInPhoneEditText.getText().toString();
             Intent intent = new Intent(SignIn.this, OtpPage.class);
+            intent.putExtra("Phone Number", phoneNumber);
             startActivity(intent);
             finish();
         }

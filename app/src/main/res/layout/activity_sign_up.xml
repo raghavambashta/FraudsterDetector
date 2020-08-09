@@ -100,7 +100,6 @@
         android:layout_width="134dp"
         android:layout_height="53dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="24dp"
         android:background="@drawable/capsule_bg"
         android:onClick="generateOtp"
         android:text="signup"
@@ -114,16 +113,13 @@
         android:id="@+id/reset"
         android:layout_width="134dp"
         android:layout_height="53dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="5dp"
         android:background="@drawable/capsule_bg"
         android:onClick="resetItems"
         android:text="Reset"
         android:textColor="#C6AD0A"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/getOtp"
         app:layout_constraintStart_toStartOf="@+id/textureImageView"
         app:layout_constraintTop_toBottomOf="@+id/phone" />
 
@@ -131,7 +127,7 @@
         android:id="@+id/dob"
         android:layout_width="130dp"
         android:layout_height="33dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/capsule_edit_text"
         android:clickable="true"
@@ -149,7 +145,7 @@
         android:layout_width="130dp"
         android:layout_height="33dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/capsule_edit_text"
         android:clickable="true"
         android:cursorVisible="false"
@@ -175,17 +171,19 @@
 
     <ImageView
         android:id="@+id/loginIcon"
-        android:layout_width="134dp"
+        android:layout_width="0dp"
         android:layout_height="124dp"
-        android:layout_marginStart="148dp"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="130dp"
+        app:layout_constraintEnd_toEndOf="@+id/headImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/headImageView"
         app:srcCompat="@drawable/appicon" />
 
     <ImageView
         android:id="@+id/name"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="128dp"
         android:layout_marginStart="21dp"
         android:layout_marginTop="20dp"
@@ -198,35 +196,38 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
+        android:layout_width="0dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="13dp"
+        android:layout_marginEnd="15dp"
         android:text="Already have an account?"
         android:textColor="#4813A6"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/getOtp" />
 
     <TextView
         android:id="@+id/signInTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginStart="248dp"
         android:clickable="true"
         android:onClick="signIn"
         android:text="Sign in"
         android:textColor="#4813A6"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/getOtp" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/phone"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="200dp"
-        android:layout_height="58dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="70dp"
@@ -244,7 +245,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextPhone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:digits="0987654321"
             android:drawableLeft="@drawable/phone_number"
             android:hint=" Phone Number"

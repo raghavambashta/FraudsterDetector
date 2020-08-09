@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "700141447453",
+    "firebase_url": "https://knowurcaller-a50d1.firebaseio.com",
+    "project_id": "knowurcaller-a50d1",
+    "storage_bucket": "knowurcaller-a50d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700141447453:android:8f4e63b11f947d914d19f4",
+        "android_client_info": {
+          "package_name": "com.example.KnowUrCaller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700141447453-1hlfqud06kqr4flgq2c1l45hum6elcjj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBr-lhEPfhIminGoV1yvYiEcMhStxYQNxY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700141447453-1hlfqud06kqr4flgq2c1l45hum6elcjj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
